@@ -40,10 +40,10 @@ function App() {
         setTasks(tasks.filter((task:TaskType) => task.id !== taskId));
     }
 
-    const addTask=()=>{
+    const addTask=(title: string)=>{
         const newTask: TaskType={
             id:v1(),
-            title:"My task",
+            title:title,
             isDone:false
         }
         const updatedTask = [newTask, ...tasks];

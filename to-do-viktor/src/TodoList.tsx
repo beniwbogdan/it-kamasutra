@@ -10,12 +10,12 @@ type TodDoListProps = {
     title: string,
     tasks: TaskType[],
     removeTask: (taskId: string) => void, //if function nothing return
-    changeFilter:(filter:FilterValuesType)=>void
-    addTask:()=>void
+    changeFilter: (filter: FilterValuesType) => void
+    addTask: (title: string) => void
 }
 
 const TodoList = (props: TodDoListProps) => {
-const[title,setTitle]=useState("");
+    let [title, setTitle] = useState("");
 
     const tasksListItems = props.tasks.length ? props.tasks.map(task => {
         const removeTask = () => props.removeTask(task.id);
@@ -27,6 +27,10 @@ const[title,setTitle]=useState("");
         );
     }) : <span>List of tasks is empty</span>
 
+    const addTask = () => {
+        props.addTask(title);
+        setTitle("");
+    }
 
     return (
         <div>
@@ -34,8 +38,13 @@ const[title,setTitle]=useState("");
             <div>
                 <input
                     value={title}
-                    onChange={(e)=>{setTitle(e.currentTarget.value)}} />
-                <button onClick={()=>{return props.addTask()}}>+</button>
+                    onChange={(e) => {
+                        setTitle(e.currentTarget.value)
+                    }}/>
+                <button onClick={addTask
+
+                }>+
+                </button>
             </div>
             <ul>
                 {tasksListItems}
